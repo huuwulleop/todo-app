@@ -32,12 +32,11 @@ const App = () => {
       done: false,
       id: notes.length + 1
     }
-    const newNotes = [...notes, noteObject]
 
     axios
       .post('http://localhost:3001/notes', noteObject)
       .then(res => {
-        setNotes(res.data)
+        setNotes(notes.concat(noteObject))
       })
 
     setNewNoteContent('')
