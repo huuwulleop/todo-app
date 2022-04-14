@@ -4,9 +4,9 @@ const Note = ({ content, toggleNote, done }) => {
     return (
         <li>
             <div>
-                {content}
+                {done ? <s>{content}</s> : content}
                 <span> </span>
-                <button onClick={toggleNote}>toggle</button>
+                <button onClick={toggleNote}>{done ? 'set undone' : 'set done'}</button>
             </div>
         </li>
     )

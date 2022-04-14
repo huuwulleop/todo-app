@@ -72,7 +72,9 @@ const App = () => {
                 <Note
                   key={note.id}
                   content={note.content}
-                  toggleNote={() => toggleNoteOf(note.id)} />
+                  toggleNote={() => toggleNoteOf(note.id)}
+                  done={note.done}
+                />
               ))}
             </ul>
           )
