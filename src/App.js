@@ -57,6 +57,16 @@ const App = () => {
       })
   }
 
+  const deleteNoteOf = (id) => {
+    const deletedNote = notes.find(note => note.id === id)
+    const newNotes = notes.filter(note => note.id !== id)
+
+    axios
+      .delete(`http://localhost:3001/notes/${id}`, deletedNote)
+
+    setNotes(newNotes)
+  }
+
   const clearNotes = () => {
     console.log('cleared notes');
 
@@ -88,8 +98,9 @@ const App = () => {
                 <Note
                   key={note.id}
                   content={note.content}
-                  toggleNote={() => toggleNoteOf(note.id)}
                   done={note.done}
+                  toggleNote={() => toggleNoteOf(note.id)}
+                  deleteNote={() => deleteNoteOf(note.id)}
                 />
               ))}
             </ul>
