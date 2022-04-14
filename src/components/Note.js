@@ -1,6 +1,6 @@
 import React from "react";
 
-const Note = ({ content, toggleNote }) => {
+const Note = ({ content, toggleNote, done }) => {
     return (
         <li>
             <div>

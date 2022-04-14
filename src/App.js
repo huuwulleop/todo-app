@@ -47,6 +47,17 @@ const App = () => {
     setNewNoteContent(event.target.value)
   }
 
+  const toggleNoteOf = (id) => {
+    const note = notes.find(note => note.id === id)
+    const toggledNote = { ...note, done: !note.done }
+
+    axios
+      .put(`http://localhost:3001/notes/${id}`, toggledNote)
+      .then(res => {
+        setNotes(notes.map(note => note.id === id ? res.data : note))
+      })
+  }
+
   return (
     <div>
       <h1>Add a new note</h1>
@@ -57,7 +68,12 @@ const App = () => {
         notes.length > 0
           ? (
             <ul>
-              {notes.map(note => <Note key={note.id} content={note.content} />)}
+              {notes.map(note => (
+                <Note
+                  key={note.id}
+                  content={note.content}
+                  toggleNote={() => toggleNoteOf(note.id)} />
+              ))}
             </ul>
           )
           : 'Everything is done! :D (for now)'
