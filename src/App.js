@@ -4,10 +4,15 @@ import { useState } from 'react'
 import NoteForm from './components/NoteForm';
 
 const App = () => {
+  const addNote = (event) => {
+    event.preventDefault()
+    console.log('event is clicked');
+  }
+  
   return (
     <div>
       <h1>Add a new note</h1>
-      <NoteForm />
+      <NoteForm addNote={addNote} />
       
       <h1>ToDo list</h1>
     </div>

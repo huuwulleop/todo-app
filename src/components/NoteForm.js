@@ -1,10 +1,10 @@
 import React from "react";
 
-const NoteForm = () => {
+const NoteForm = ({ addNote }) => {
     return (
-        <form>
+        <form onSubmit={addNote}>
             <input placeholder="add a new note..." />
-            <button>Add</button>
+            <button type="submit">Add</button>
         </form>
     )
 }
