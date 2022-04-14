@@ -15,5 +15,15 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "notes": [
+    {
+      "content": "do things",
+      "id": 1
+    },
+    {
+      "content": "make stuffs",
+      "id": 2
+    }
+  ]
 }
