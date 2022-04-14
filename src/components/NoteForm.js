@@ -4,6 +4,7 @@ const NoteForm = ({ addNote, newNoteContent, changeNote }) => {
     return (
         <form onSubmit={addNote}>
             <input placeholder="add a new note..." value={newNoteContent} onChange={changeNote} />
+            <span> </span>
             <button type="submit">Add</button>
         </form>
     )
