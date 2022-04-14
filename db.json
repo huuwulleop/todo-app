@@ -19,11 +19,23 @@
   "notes": [
     {
       "content": "do things",
+      "done": false,
       "id": 1
     },
     {
       "content": "make stuffs",
+      "done": false,
       "id": 2
+    },
+    {
+      "content": "cook breakfast",
+      "done": false,
+      "id": 3
+    },
+    {
+      "content": "aaa",
+      "done": false,
+      "id": 4
     }
   ]
 }

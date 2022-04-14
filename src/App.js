@@ -29,10 +29,16 @@ const App = () => {
     console.log('event is clicked');
     const noteObject = {
       content: newNoteContent,
+      done: false,
       id: notes.length + 1
     }
     const newNotes = [...notes, noteObject]
-    setNotes(newNotes)
+
+    axios
+      .post('http://localhost:3001/notes', noteObject)
+      .then(res => {
+        setNotes(res.data)
+      })
 
     setNewNoteContent('')
   }
