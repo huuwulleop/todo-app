@@ -63,6 +63,9 @@ const App = () => {
     notes.forEach(note => {
       axios
         .delete(`http://localhost:3001/notes/${note.id}`)
+        .then(res => {
+          console.log(res);
+        })
     })
     setNotes([])
   }
