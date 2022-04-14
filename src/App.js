@@ -13,13 +13,12 @@ const App = () => {
   ])
   const [newNoteContent, setNewNoteContent] = useState('')
 
-  //TODO: implement effect hook to fetch data from db.json
   const fetch = () => {
     axios
       .get('http://localhost:3001/notes')
-      .then(response => {
+      .then(res => {
         console.log('data fetched');
-        setNotes(response.data)
+        setNotes(res.data)
       })
   }
   useEffect(fetch, [])
@@ -29,10 +28,15 @@ const App = () => {
     console.log('event is clicked');
     const noteObject = {
       content: newNoteContent,
+      done: false,
       id: notes.length + 1
     }
-    const newNotes = [...notes, noteObject]
-    setNotes(newNotes)
+
+    axios
+      .post('http://localhost:3001/notes', noteObject)
+      .then(res => {
+        setNotes(notes.concat(noteObject))
+      })
 
     setNewNoteContent('')
   }
@@ -42,17 +46,63 @@ const App = () => {
     setNewNoteContent(event.target.value)
   }
 
+  const toggleNoteOf = (id) => {
+    const note = notes.find(note => note.id === id)
+    const toggledNote = { ...note, done: !note.done }
+
+    axios
+      .put(`http://localhost:3001/notes/${id}`, toggledNote)
+      .then(res => {
+        setNotes(notes.map(note => note.id === id ? res.data : note))
+      })
+  }
+
+  const deleteNoteOf = (id) => {
+    const deletedNote = notes.find(note => note.id === id)
+    const newNotes = notes.filter(note => note.id !== id)
+
+    axios
+      .delete(`http://localhost:3001/notes/${id}`, deletedNote)
+
+    setNotes(newNotes)
+  }
+
+  const clearNotes = () => {
+    console.log('cleared notes');
+
+    notes.forEach(note => {
+      axios
+        .delete(`http://localhost:3001/notes/${note.id}`)
+        .then(res => {
+          console.log(res);
+        })
+    })
+    setNotes([])
+  }
+
   return (
     <div>
       <h1>Add a new note</h1>
       <NoteForm addNote={addNote} newNoteContent={newNoteContent} changeNote={changeNote} />
 
-      <h1>ToDo list</h1>
+      <div>
+        <h1>ToDo list</h1>
+        <button onClick={clearNotes}>clear notes</button>
+      </div>
+
       {
         notes.length > 0
           ? (
             <ul>
-              {notes.map(note => <Note key={note.id} content={note.content} />)}
+              {notes.map(note => (
+                <Note
+                  key={note.id}
+                  content={note.content}
+                  done={note.done}
+                  toggleNote={() => toggleNoteOf(note.id)}
+                  deleteNote={() => deleteNoteOf(note.id)}
+                />
+              ))}
             </ul>
           )
           : 'Everything is done! :D (for now)'
