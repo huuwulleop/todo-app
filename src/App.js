@@ -13,13 +13,12 @@ const App = () => {
   ])
   const [newNoteContent, setNewNoteContent] = useState('')
 
-  //TODO: implement effect hook to fetch data from db.json
   const fetch = () => {
     axios
       .get('http://localhost:3001/notes')
-      .then(response => {
+      .then(res => {
         console.log('data fetched');
-        setNotes(response.data)
+        setNotes(res.data)
       })
   }
   useEffect(fetch, [])
@@ -58,12 +57,26 @@ const App = () => {
       })
   }
 
+  const clearNotes = () => {
+    console.log('cleared notes');
+
+    notes.forEach(note => {
+      axios
+        .delete(`http://localhost:3001/notes/${note.id}`)
+    })
+    setNotes([])
+  }
+
   return (
     <div>
       <h1>Add a new note</h1>
       <NoteForm addNote={addNote} newNoteContent={newNoteContent} changeNote={changeNote} />
 
-      <h1>ToDo list</h1>
+      <div>
+        <h1>ToDo list</h1>
+        <button onClick={clearNotes}>clear notes</button>
+      </div>
+
       {
         notes.length > 0
           ? (

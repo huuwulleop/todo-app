@@ -1,41 +1,9 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "notes": [
     {
-      "content": "do things",
+      "content": "weqweq",
       "done": false,
       "id": 1
-    },
-    {
-      "content": "make stuffs",
-      "done": false,
-      "id": 2
-    },
-    {
-      "content": "cook breakfast",
-      "done": false,
-      "id": 3
-    },
-    {
-      "content": "aaa",
-      "done": false,
-      "id": 4
     }
   ]
 }
