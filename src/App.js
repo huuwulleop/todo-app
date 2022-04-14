@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import axios from 'axios';
+
 // components
 import NoteForm from './components/NoteForm';
 import Note from './components/Note';
@@ -22,7 +24,7 @@ const App = () => {
     }
     const newNotes = [...notes, noteObject]
     setNotes(newNotes)
-    
+
     setNewNoteContent('')
   }
 
@@ -37,12 +39,15 @@ const App = () => {
       <NoteForm addNote={addNote} newNoteContent={newNoteContent} changeNote={changeNote} />
 
       <h1>ToDo list</h1>
-      <ul>
-        {notes.length > 0
-          ? notes.map(note => <li key={note.id}><Note content={note.content} /></li>)
-          : 'Everything is done! :D'
-        }
-      </ul>
+      {
+        notes.length > 0
+          ? (
+            <ul>
+              {notes.map(note => <Note key={note.id} content={note.content} />)}
+            </ul>
+          )
+          : 'Everything is done! :D (for now)'
+      }
     </div>
   )
 }
