@@ -14,6 +14,11 @@ const App = () => {
   const addNote = (event) => {
     event.preventDefault()
     console.log('event is clicked');
+    const noteObject = {
+      content: newNote,
+      id: notes.length + 1
+    }
+    
     setNewNote('')
   }
 
@@ -30,7 +35,7 @@ const App = () => {
       <h1>ToDo list</h1>
       <ul>
         {notes.length > 0
-          ? notes.map(note => <li><Note content={note.content} /></li>)
+          ? notes.map(note => <li key={note.id}><Note content={note.content} /></li>)
           : 'Everything is done! :D'
         }
       </ul>
