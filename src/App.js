@@ -8,12 +8,21 @@ import Note from './components/Note';
 
 const App = () => {
   const [notes, setNotes] = useState([
-    { content: 'Do stuffs', id: 1 },
-    { content: 'Make things', id: 2 }
+    // { content: 'Do stuffs', id: 1 },
+    // { content: 'Make things', id: 2 }
   ])
   const [newNoteContent, setNewNoteContent] = useState('')
 
   //TODO: implement effect hook to fetch data from db.json
+  const fetch = () => {
+    axios
+      .get('http://localhost:3001/notes')
+      .then(response => {
+        console.log('data fetched');
+        setNotes(response.data)
+      })
+  }
+  useEffect(fetch, [])
 
   const addNote = (event) => {
     event.preventDefault()
