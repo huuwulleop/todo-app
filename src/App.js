@@ -9,28 +9,32 @@ const App = () => {
     { content: 'Do stuffs', id: 1 },
     { content: 'Make things', id: 2 }
   ])
-  const [newNote, setNewNote] = useState('')
+  const [newNoteContent, setNewNoteContent] = useState('')
+
+  //TODO: implement effect hook to fetch data from db.json
 
   const addNote = (event) => {
     event.preventDefault()
     console.log('event is clicked');
     const noteObject = {
-      content: newNote,
+      content: newNoteContent,
       id: notes.length + 1
     }
+    const newNotes = [...notes, noteObject]
+    setNotes(newNotes)
     
-    setNewNote('')
+    setNewNoteContent('')
   }
 
   const changeNote = (event) => {
     console.log(event.target.value);
-    setNewNote(event.target.value)
+    setNewNoteContent(event.target.value)
   }
 
   return (
     <div>
       <h1>Add a new note</h1>
-      <NoteForm addNote={addNote} newNote={newNote} changeNote={changeNote} />
+      <NoteForm addNote={addNote} newNoteContent={newNoteContent} changeNote={changeNote} />
 
       <h1>ToDo list</h1>
       <ul>
