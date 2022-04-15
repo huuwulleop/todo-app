@@ -2,18 +2,23 @@
   "notes": [
     {
       "content": "Make breakfast",
-      "done": false,
+      "done": true,
       "id": 1
     },
     {
       "content": "Do laundry",
-      "done": false,
+      "done": true,
       "id": 2
     },
     {
-      "content": "Coding",
+      "content": "Learn React",
       "done": false,
       "id": 3
+    },
+    {
+      "content": "Watch movies",
+      "done": false,
+      "id": 4
     }
   ]
 }
