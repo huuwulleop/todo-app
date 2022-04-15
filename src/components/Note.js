@@ -4,10 +4,11 @@ const Note = ({ content, done, toggleNote, deleteNote }) => {
     return (
         <li>
             <div>
-                {done ? <s>{content}</s> : content}
+                <button onClick={deleteNote}>delete</button>
                 <span> </span>
                 <button onClick={toggleNote}>{done ? 'set undone' : 'set done'}</button>
-                <button onClick={deleteNote}>delete</button>
+                <span> </span>
+                {done ? <s>{content}</s> : content}
             </div>
         </li>
     )
