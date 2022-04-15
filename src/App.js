@@ -13,7 +13,7 @@ const App = () => {
   ])
   const [newNoteContent, setNewNoteContent] = useState('')
 
-  const fetch = () => {
+  const dataFetch = () => {
     axios
       .get('http://localhost:3001/notes')
       .then(res => {
@@ -21,7 +21,7 @@ const App = () => {
         setNotes(res.data)
       })
   }
-  useEffect(fetch, [])
+  useEffect(dataFetch, [])
 
   const addNote = (event) => {
     event.preventDefault()
