@@ -6,9 +6,11 @@ const Note = ({ content, done, toggleNote, deleteNote }) => {
             <div>
                 <button onClick={deleteNote}>delete</button>
                 <span> </span>
-                <button onClick={toggleNote}>{done ? 'set undone' : 'set done'}</button>
-                <span> </span>
-                {done ? <s>{content}</s> : content}
+                <label>
+                    <input type='checkbox' onChange={toggleNote} checked={done} />
+                    <span> </span>
+                    {done ? <s>{content}</s> : content}
+                </label>
             </div>
         </li>
     )
